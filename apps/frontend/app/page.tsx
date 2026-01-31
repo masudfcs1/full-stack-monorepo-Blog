@@ -7,21 +7,10 @@ type Props = Omit<ImageProps, "src"> & {
   srcDark: string;
 };
 
-const ThemeImage = (props: Props) => {
-  const { srcLight, srcDark, ...rest } = props;
-
-  return (
-    <>
-      <Image {...rest} src={srcLight} className="imgLight" />
-      <Image {...rest} src={srcDark} className="imgDark" />
-    </>
-  );
-};
-
 export default function Home() {
   return (
     <div className="container mx-auto p-4">
-      <h1 className="font-bold text-red-500">Welcome to DevLog</h1>
+      <h1 className="font-bold text-red-500 w-full">Welcome to DevLog</h1>
       <p className="mt-4 text-green-700">
         Your go-to blog for full-stack development insights.
       </p>

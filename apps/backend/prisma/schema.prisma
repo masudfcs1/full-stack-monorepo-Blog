@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -14,23 +8,53 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  email     String   @unique
+  id        String    @id @default(uuid())
+  email     String    @unique
   password  String
   name      String
-  avatar    String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  blogs     Blog[]
+  role      Role      @default(USER)
+  posts     Post[]
+  comments  Comment[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
 
-model Blog {
+model Post {
+  id         String     @id @default(uuid())
+  title      String
+  slug       String     @unique
+  content    String     @db.Text
+  published  Boolean    @default(false)
+  // Use the Enum here
+  category   Category   @default(GENERAL)
+  authorId   String
+  author     User       @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  comments   Comment[]
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+
+  @@index([slug])
+}
+
+model Comment {
   id        String   @id @default(uuid())
-  title     String
   content   String
-  image     String?
+  postId    String
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
   authorId  String
   author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum Category {
+  TECH
+  LIFESTYLE
+  BUSINESS
+  EDUCATION
+  GENERAL
 }

@@ -5,7 +5,6 @@ import Home from "../components/home/home";
 export default function page() {
   return (
     <div>
-      <Header />
       <Home />
     </div>
   );

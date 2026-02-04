@@ -1,19 +1,17 @@
 "use client";
-import React from "react";
 import { useRouter } from "next/navigation";
-// import { useAuthStore } from "@/store/authStore";
+
 import {
-  PenLine,
+  ArrowRight,
   Heart,
+  PenLine,
   Share2,
   Sparkles,
-  ArrowRight,
   Star,
 } from "lucide-react";
 
 export default function Home() {
   const router = useRouter();
-  // const { isAuthenticated } = useAuthStore();
 
   const features = [
     {

@@ -7,13 +7,13 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
+import Link from "next/link";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Detect scroll for glass effect
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
@@ -62,9 +62,11 @@ const Header = () => {
                 <Waves className="text-white h-5 w-5" />
               </div>
             </div>
-            <span className="text-2xl font-black tracking-tighter bg-gradient-to-r from-blue-700 to-cyan-500 bg-clip-text text-transparent">
-              DB
-            </span>
+            <Link href="/">
+              <span className="text-2xl font-black tracking-tighter bg-gradient-to-r from-blue-700 to-cyan-500 bg-clip-text text-transparent">
+                DB
+              </span>
+            </Link>
           </div>
 
           {/* DESKTOP NAV */}

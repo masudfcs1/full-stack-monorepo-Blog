@@ -88,7 +88,7 @@ export default function Home() {
               style={{ animationDelay: "0.3s" }}
             >
               <button
-                onClick={() => router.push("/blog")}
+                onClick={() => router.push("/blogs")}
                 className="group px-8 py-4 bg-gradient-to-r from-violet-500 to-purple-600 text-white font-medium rounded-2xl shadow-lg shadow-violet-500/25 hover:shadow-xl hover:shadow-violet-500/30 hover:-translate-y-1 transition-all"
               >
                 <span className="flex items-center gap-2">
